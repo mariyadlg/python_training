@@ -29,7 +29,17 @@ class ContactHelper:
         self.fillFieldWithValue(wd, "notes", contact.notes)
         self.fillFieldWithValue(wd, "phone2", contact.phone2)
 
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+        # submit deletion
+        wd.find_element_by_css_selector('input[value="Delete"]')
+
     def fillFieldWithValue(self, wd, elementname, value):
         wd.find_element_by_name(elementname).click()
         wd.find_element_by_name(elementname).clear()
         wd.find_element_by_name(elementname).send_keys(value)
+
+
