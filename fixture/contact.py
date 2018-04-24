@@ -42,4 +42,12 @@ class ContactHelper:
         wd.find_element_by_name(elementname).clear()
         wd.find_element_by_name(elementname).send_keys(value)
 
+    def modification_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("tr.odd:nth-child(3) > td:nth-child(8) > a:nth-child(1) > img:nth-child(1)").click()
+        self.fillFieldWithValue(wd, "firstname", "222")
+        wd.find_element_by_name("update").click()
+
+
+
 
