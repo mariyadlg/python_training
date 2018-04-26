@@ -44,9 +44,10 @@ class ContactHelper:
 
     def modification_contact(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector("tr.odd:nth-child(3) > td:nth-child(8) > a:nth-child(1) > img:nth-child(1)").click()
-        self.fillFieldWithValue(wd, "firstname", "222")
+        wd.find_element_by_css_selector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img").click()
+        self.fillFieldWithValue(wd, "firstname", "777")
         wd.find_element_by_name("update").click()
+
 
 
 
