@@ -31,11 +31,12 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.open_contacts_page(wd)
         # select first contact
         wd.find_element_by_name("selected[]").click()
         # submit deletion
-        wd.find_element_by_css_selector('input[value="Delete"]')
+        wd.find_element_by_css_selector('input[value="Delete"]').click()
+        wd.switch_to_alert().accept()
 
     def fillFieldWithValue(self, wd, elementname, value):
         wd.find_element_by_name(elementname).click()
@@ -47,6 +48,10 @@ class ContactHelper:
         wd.find_element_by_css_selector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img").click()
         self.fillFieldWithValue(wd, "firstname", "777")
         wd.find_element_by_name("update").click()
+
+    def open_contacts_page(self, wd):
+        wd.find_element_by_link_text("home").click()
+
 
 
 
