@@ -35,7 +35,6 @@ class GroupHelper:
         wd.find_element_by_name("selected[]").click()
         # submit deletion
         wd.find_element_by_name("delete").click()
-        wd.switch_to_alert().accept()
         self.return_to_groups_page()
 
 
