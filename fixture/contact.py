@@ -28,6 +28,8 @@ class ContactHelper:
         self.fillFieldWithValue(wd, "address2", contact.address2)
         self.fillFieldWithValue(wd, "notes", contact.notes)
         self.fillFieldWithValue(wd, "phone2", contact.phone2)
+        wd.find_element_by_css_selector('input[value="Enter"]').click()
+
 
     def delete_first_contact(self):
         wd = self.app.wd
