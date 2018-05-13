@@ -30,7 +30,6 @@ class ContactHelper:
         self.fillFieldWithValue(wd, "phone2", contact.phone2)
         wd.find_element_by_css_selector('input[value="Enter"]').click()
 
-
     def delete_first_contact(self):
         wd = self.app.wd
         self.open_contacts_page(wd)
@@ -52,12 +51,14 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
 
     def open_contacts_page(self, wd):
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("selected[]")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def count(self):
         wd = self.app.wd
         self.open_contacts_page(wd)
         return len(wd.find_elements_by_name("selected[]"))
+
 
 
 
