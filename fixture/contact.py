@@ -38,10 +38,13 @@ class ContactHelper:
         self.fillFieldWithValue(wd, "notes", contact.notes)
         self.fillFieldWithValue(wd, "phone2", contact.phone2)
 
-    def delete_first_contact(self):
+    def delete_first_contact_(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.open_contacts_page(wd)
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_css_selector('input[value="Delete"]').click()
         wd.switch_to_alert().accept()
@@ -51,10 +54,17 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def modify_first_contact(self, new_contact_data):
+    def select_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def modify_first_contact_(self):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contacts_page(wd)
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         wd.find_element_by_css_selector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img").click()
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
