@@ -64,7 +64,6 @@ class ContactHelper:
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contacts_page(wd)
-        self.select_contact_by_index(index)
         wd.find_element_by_css_selector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img").click()
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
@@ -100,8 +99,8 @@ class ContactHelper:
             self.open_contacts_page(wd)
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
-                firstname = element.find_element_by_name("selected[]").get_attribute("value")
-                lastname = element.find_element_by_name("selected[]").get_attribute("value")
+                firstname = element.find_element_by_css_selector("td:nth-child(3)").text
+                lastname = element.find_element_by_css_selector("td:nth-child(2)").text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id))
         return list(self.contact_cache)
